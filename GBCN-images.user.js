@@ -1,9 +1,9 @@
 /*
 ==UserScript==
-@name           GBCN-images 4.1
+@name           GBCN-images 5.0
 @match          https://*.gbcnmedia.net/*.jpg
 @match          http://*.girlsbcn.net/*.jpg
-@version        4.1
+@version        4.2
 ==/UserScript==
 */
 
@@ -12,135 +12,95 @@
 */
 
 let dire = window.location.href.replace(/fotos(\d)\.girlsbcn(.*)/,
-                                        (match, p1, p2) => {
-  if (match) window.location.assign(`https://media${p1}.gbcnmedia${p2}`);
-});
+  (match, p1, p2) => {
+    if (match) window.location.assign(`https://media${p1}.gbcnmedia${p2}`);});
 
 let re = /(?<dire>.*?.net\/(?<nombre>[a-zA-Z]*)\d{0,3}\/)(?<foto>(?:\k<nombre>)?\d{1,3})(?<ext>.*)/;
 let matches = dire.match(re);
-let i = 0;
-let malas = 0;
-let pad = 2;
-
-function sumarImagen(direCompleta) {
-  let singleClickTimer = 0;
-  let numClicks = 0;
-  let img = document.createElement("img");
-  img.src = direCompleta;
-
-  let clase = "peque";
-  function clicks(){
-    numClicks++;
-    if (numClicks === 1 && singleClickTimer === 0) {
-      singleClickTimer = setTimeout(() => {
-        clase = "original";
-        clicks();
-      },200);
-    }else {
-      if (img.classList.length > 0) {
-        img.className = "";
-      }else {
-        img.classList.add(clase);
-        img.scrollIntoView();
-      }
-      clearTimeout(singleClickTimer);
-      numClicks = 0;
-      singleClickTimer = 0;
-      clase = "peque";
-    }
-  }
-  img.addEventListener("click", clicks);
-  document.body.appendChild(img);
-  return img;
-}
 
 if ((/0?01/).test(matches.groups.foto) < 3) {
-  dire = dire.replace(re,"$<dire>$<nombre>");
+  dire = dire.replace(re, "$<dire>$<nombre>");
 }
 
 let style = document.createElement('style');
 style.appendChild(document.createTextNode(`
-    ul {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
-      align-content: stretch;
-      row-gap: 10px;
-      column-gap: 20px;
-      list-style: none
-    }
-    body {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
-      align-items: stretch;
-      row-gap: 20px;
-      list-style: none
-    }
-    li {
-      max-height: 90vh;
-      min-height: 50vh;
-      flex-shrink: 3;
-      flex-basis: auto
-    }
-    img {
-      object-fit: contain;
-      position: initial;
-      height: 100vh;
-      width: 100vw;
-      max-height: 100vh;
-      max-width: 100vw;
-      flex: 0;
-    }
-    .original {
-      height: initial;
-      width: initial;
-      max-height: initial;
-      max-width: initial;
-      flex: 0;
-    }
-    .peque {
-      height: 75vh;
-      max-height: initial;
-      max-width: initial;
-      flex: 0
-    }
+body {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: stretch;
+	align-content: stretch;
+	margin-block: 3vh;
+	gap: 1vh 1vw;
 }
-    `));
+img {
+	position: initial;
+	object-fit: contain;
+	margin: 0;
+	max-height: 95vh;
+	flex: 1 1 auto;
+}
+img.landscape {
+	max-width: initial;
+}
+.original {
+	height: initial;
+	width: initial;
+	max-height: initial;
+	max-width: initial;
+	flex: 0 0 auto;
+  align-self: center;
+}
+.peque {
+	height: 75vh;
+	max-height: initial;
+	max-width: initial;
+	flex: 0
+}
+`));
 document.head.appendChild(style);
 
 while (document.body.childElementCount > 0) document.body.childNodes[0].remove();
 
-for (let j = 0; j < 2; j++) {
-  do {
-    (function(){
-      i++;
-      let numero = i.toString().padStart(pad,0);
-      let direCompleta = `${dire}${numero}.jpg`;
-      let request = new XMLHttpRequest();
-      request.open('GET', direCompleta, false);
-      request.onreadystatechange = function(){
-        if (request.readyState === 4){
-          if (request.status === 200) {
-            let finalImg = sumarImagen(direCompleta);
-            if (finalImg.height <= finalImg.width) {
-              console.log("cunt");
-              finalImg.classList.add("original");
-            }
-            malas = 0;
-            return;
-          }
-          malas++;
-        }
-      };
-      request.send();
-      console.log(i+": "+malas);
-    })();
-  } while (malas < 40);
-  dire = window.location.href.replace(re,"$<dire>");
-  malas = 0;
-  i = 0;
-  pad = 3;
-}
+(function addImg(pad = 2, malas = 0, i = 1) {
+  console.log({
+    pad,
+    malas,
+    i
+  });
+  let direCompleta = `${dire}${(i.toString().padStart(pad,0))}.jpg`;
 
-document.title = document.getElementsByTagName("img").length + " " + matches.groups.nombre
+  let request = new XMLHttpRequest();
+  request.open('GET', direCompleta, false);
+
+  request.onreadystatechange = function() {
+    if (request.readyState !== 4 || request.status !== 200) {
+      malas++;
+      return;
+    }
+    let img = document.createElement("img");
+    img.src = direCompleta;
+    img.addEventListener("click", (e) => {
+      let targetClassList = e.target.classList;
+      targetClassList[(targetClassList.contains("original") ? "remove" : "add")]("original");
+    });
+    document.body.appendChild(img);
+    if (img.height <= img.width) {
+      img.classList.add("landscape");
+    }
+  };
+
+  request.send();
+
+  i++;
+  if (malas < 40) {
+    addImg(pad, malas, i);
+    return;
+  } else if (pad === 2) {
+    dire = window.location.href.replace(re, "$<dire>");
+    addImg(3, 0, 1);
+  }
+})();
+
+
+document.title = document.getElementsByTagName("img").length + " " + matches.groups.nombre;
