@@ -1,54 +1,60 @@
 /*
 ==UserScript==
-@name           GBCN-images 3.0
-@match          https://*.gbcnmedia.net/*/001.jpg
-@version        3.0
+@name           GBCN-images 3.1
+@match          https://*.gbcnmedia.net/*.jpg
+@match          http://*.girlsbcn.net/*.jpg
+@version        3.1
 ==/UserScript==
 */
 
 /* ToDo
-- adaptar las fotos con direcciones antiguas como:
-    http://fotos0.girlsbcn.net/larissa6/larissa01.jpg
-a este
-    https://media0.gbcnmedia.net/larissa6/larissa01.jpg
+- que según las va encontrando las vaya incluyendo en la web
 - Buscarlas también en wayback (hay que cambiar el número del principio y buscarlas en varios formatos)
 */
+
+let dire = window.location.href.replace(/fotos(\d)\.girlsbcn(.*)/,
+                                        (match, p1, p2) => {
+  if (match) window.location.assign(`https://media${p1}.gbcnmedia${p2}`);
+});
+
 let re = /(?<dire>.*?.net\/(?<nombre>[a-zA-Z]*)\d{0,3}\/)(?<foto>(?:\k<nombre>)?\d{1,3})(?<ext>.*)/;
-let dire = window.location.href;
 let matches = dire.match(re);
 let dires = Array();
 let i = 0;
 let malas = 0;
+let pad = 2;
 
 if ((/0?01/).test(matches.groups.foto) < 3) {
-  //dire = dire.replace(re,"$<dire>$<nombre>01.jpg");
   dire = dire.replace(re,"$<dire>$<nombre>");
 }
 
-do {
-  i++;
-  (function(i) {
-    let numero = i.toString().padStart(2,0);
-    let direCompleta = `${dire}${numero}.jpg`;
-    let request = new XMLHttpRequest();
-    request.open('GET', direCompleta, false);
-    request.onreadystatechange = function(){
-      if (request.readyState === 4){
-        if (request.status === 200) {
-          dires.push(direCompleta);
-          malas = 0;
-          return
-        } else {
+for (let j = 0; j < 2; j++) {
+  do {
+    (function(){
+      i++;
+      let numero = i.toString().padStart(pad,0);
+      let direCompleta = `${dire}${numero}.jpg`;
+      let request = new XMLHttpRequest();
+      request.open('GET', direCompleta, false);
+      request.onreadystatechange = function(){
+        if (request.readyState === 4){
+          if (request.status === 200) {
+            dires.push(direCompleta);
+            malas = 0;
+            return;
+          }
           malas++;
-          i = i + (11 - i % 10);
         }
-      }
-    };
-    request.send();
-    console.log(i);
-  })(i);
-} while (malas < 10)
-
+      };
+      request.send();
+      console.log(i+": "+malas);
+    })();
+  } while (malas < 40);
+  dire = window.location.href.replace(re,"$<dire>");
+  malas = 0;
+  i = 0;
+  pad = 3;
+}
 if (dires.length > 0) {
   while (document.body.childElementCount > 0) document.body.childNodes[0].remove();
 
@@ -58,35 +64,49 @@ if (dires.length > 0) {
       display: flex;
       flex-flow: row wrap;
       justify-content: center;
+      align-content: stretch;
+      row-gap: 10px;
+      column-gap: 20px;
+      list-style: none
+    }
+    body {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
       align-items: stretch;
       row-gap: 20px;
-      column-gap: 20px;
-      list-style: none;
+      list-style: none
     }
     li {
       max-height: 90vh;
       min-height: 50vh;
       flex-shrink: 3;
-      flex-basis: auto;
+      flex-basis: auto
     }
     img {
-      max-height: 100%;
-      min-width: 100%;
       object-fit: contain;
-      vertical-align: bottom;
       position: initial;
+      height: 75vh;
+      flex: 1 1 auto
+    }
+    .grande {
+      height: 100vh;
+      width: 100vw;
+      max-height: 100vh;
+      max-width: 100vw;
+      flex: 0;
+    }
 }
     `));
   document.head.appendChild(style);
 
-  let lista = document.createElement("ul");
-  document.body.appendChild(lista);
-
   dires.forEach((direCompleta) => {
-    let container = document.createElement("li");
     let img = document.createElement("img");
     img.src = direCompleta;
-    container.appendChild(img)
-    lista.appendChild(container);
+    img.addEventListener("click", () => {
+      img.classList.toggle("grande");
+      img.scrollIntoView();
+    });
+    img = document.body.appendChild(img);
   });
 }
