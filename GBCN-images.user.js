@@ -1,8 +1,8 @@
 /*
 ==UserScript==
-@name           GBCN-images 1.1
+@name           GBCN-images 3.0
 @match          https://*.gbcnmedia.net/*/001.jpg
-@version        1.1
+@version        3.0
 ==/UserScript==
 */
 
@@ -26,8 +26,8 @@ if ((/0?01/).test(matches.groups.foto) < 3) {
 }
 
 do {
-  (function(){
-    i++
+  i++;
+  (function(i) {
     let numero = i.toString().padStart(2,0);
     let direCompleta = `${dire}${numero}.jpg`;
     let request = new XMLHttpRequest();
@@ -38,14 +38,16 @@ do {
           dires.push(direCompleta);
           malas = 0;
           return
+        } else {
+          malas++;
+          i = i + (11 - i % 10);
         }
-        malas++;
       }
     };
     request.send();
-    console.log(i+": "+malas);
-  })();
-} while (malas < 40)
+    console.log(i);
+  })(i);
+} while (malas < 10)
 
 if (dires.length > 0) {
   while (document.body.childElementCount > 0) document.body.childNodes[0].remove();
@@ -56,49 +58,35 @@ if (dires.length > 0) {
       display: flex;
       flex-flow: row wrap;
       justify-content: center;
-      align-content: stretch;
-      row-gap: 10px;
-      column-gap: 20px;
-      list-style: none
-    }
-    body {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
       align-items: stretch;
       row-gap: 20px;
-      list-style: none
+      column-gap: 20px;
+      list-style: none;
     }
     li {
       max-height: 90vh;
       min-height: 50vh;
       flex-shrink: 3;
-      flex-basis: auto
+      flex-basis: auto;
     }
     img {
+      max-height: 100%;
+      min-width: 100%;
       object-fit: contain;
+      vertical-align: bottom;
       position: initial;
-      height: 75vh;
-      flex: 1 1 auto
-    }
-    .grande {
-      height: 100vh;
-      width: 100vw;
-      max-height: 100vh;
-      max-width: 100vw;
-      flex: 0;
-    }
 }
     `));
   document.head.appendChild(style);
 
+  let lista = document.createElement("ul");
+  document.body.appendChild(lista);
+
   dires.forEach((direCompleta) => {
+    let container = document.createElement("li");
     let img = document.createElement("img");
     img.src = direCompleta;
-    img.addEventListener("click", (e) => {
-      img.classList.toggle("grande");
-      img.scrollIntoView();
-    });
-    img = document.body.appendChild(img);
+    container.appendChild(img)
+    lista.appendChild(container);
   });
 }
