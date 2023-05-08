@@ -1,9 +1,9 @@
 /*
 ==UserScript==
-@name           GBCN-images 4.0
+@name           GBCN-images 4.1
 @match          https://*.gbcnmedia.net/*.jpg
 @match          http://*.girlsbcn.net/*.jpg
-@version        4.0
+@version        4.1
 ==/UserScript==
 */
 
@@ -24,14 +24,16 @@ let pad = 2;
 
 function sumarImagen(direCompleta) {
   let singleClickTimer = 0;
-	let numClicks = 0;
+  let numClicks = 0;
   let img = document.createElement("img");
-  let clase = "original";
+  img.src = direCompleta;
+
+  let clase = "peque";
   function clicks(){
     numClicks++;
     if (numClicks === 1 && singleClickTimer === 0) {
       singleClickTimer = setTimeout(() => {
-        clase = "grande";
+        clase = "original";
         clicks();
       },200);
     }else {
@@ -44,14 +46,12 @@ function sumarImagen(direCompleta) {
       clearTimeout(singleClickTimer);
       numClicks = 0;
       singleClickTimer = 0;
-      clase = "original";
+      clase = "peque";
     }
   }
-
-  img.src = direCompleta;
-
   img.addEventListener("click", clicks);
-  img = document.body.appendChild(img);
+  document.body.appendChild(img);
+  return img;
 }
 
 if ((/0?01/).test(matches.groups.foto) < 3) {
@@ -86,10 +86,6 @@ style.appendChild(document.createTextNode(`
     img {
       object-fit: contain;
       position: initial;
-      height: 75vh;
-      flex: 1 1 auto
-    }
-    .grande {
       height: 100vh;
       width: 100vw;
       max-height: 100vh;
@@ -99,7 +95,15 @@ style.appendChild(document.createTextNode(`
     .original {
       height: initial;
       width: initial;
+      max-height: initial;
+      max-width: initial;
       flex: 0;
+    }
+    .peque {
+      height: 75vh;
+      max-height: initial;
+      max-width: initial;
+      flex: 0
     }
 }
     `));
@@ -118,7 +122,11 @@ for (let j = 0; j < 2; j++) {
       request.onreadystatechange = function(){
         if (request.readyState === 4){
           if (request.status === 200) {
-            sumarImagen(direCompleta);
+            let finalImg = sumarImagen(direCompleta);
+            if (finalImg.height <= finalImg.width) {
+              console.log("cunt");
+              finalImg.classList.add("original");
+            }
             malas = 0;
             return;
           }
