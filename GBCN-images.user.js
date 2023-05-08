@@ -1,14 +1,13 @@
 /*
 ==UserScript==
-@name           GBCN-images 3.1
+@name           GBCN-images 4.0
 @match          https://*.gbcnmedia.net/*.jpg
 @match          http://*.girlsbcn.net/*.jpg
-@version        3.1
+@version        4.0
 ==/UserScript==
 */
 
 /* ToDo
-- que según las va encontrando las vaya incluyendo en la web
 - Buscarlas también en wayback (hay que cambiar el número del principio y buscarlas en varios formatos)
 */
 
@@ -19,47 +18,48 @@ let dire = window.location.href.replace(/fotos(\d)\.girlsbcn(.*)/,
 
 let re = /(?<dire>.*?.net\/(?<nombre>[a-zA-Z]*)\d{0,3}\/)(?<foto>(?:\k<nombre>)?\d{1,3})(?<ext>.*)/;
 let matches = dire.match(re);
-let dires = Array();
 let i = 0;
 let malas = 0;
 let pad = 2;
+
+function sumarImagen(direCompleta) {
+  let singleClickTimer = 0;
+	let numClicks = 0;
+  let img = document.createElement("img");
+  let clase = "original";
+  function clicks(){
+    numClicks++;
+    if (numClicks === 1 && singleClickTimer === 0) {
+      singleClickTimer = setTimeout(() => {
+        clase = "grande";
+        clicks();
+      },200);
+    }else {
+      if (img.classList.length > 0) {
+        img.className = "";
+      }else {
+        img.classList.add(clase);
+        img.scrollIntoView();
+      }
+      clearTimeout(singleClickTimer);
+      numClicks = 0;
+      singleClickTimer = 0;
+      clase = "original";
+    }
+  }
+
+  img.src = direCompleta;
+
+  img.addEventListener("click", clicks);
+  img = document.body.appendChild(img);
+}
 
 if ((/0?01/).test(matches.groups.foto) < 3) {
   dire = dire.replace(re,"$<dire>$<nombre>");
 }
 
-for (let j = 0; j < 2; j++) {
-  do {
-    (function(){
-      i++;
-      let numero = i.toString().padStart(pad,0);
-      let direCompleta = `${dire}${numero}.jpg`;
-      let request = new XMLHttpRequest();
-      request.open('GET', direCompleta, false);
-      request.onreadystatechange = function(){
-        if (request.readyState === 4){
-          if (request.status === 200) {
-            dires.push(direCompleta);
-            malas = 0;
-            return;
-          }
-          malas++;
-        }
-      };
-      request.send();
-      console.log(i+": "+malas);
-    })();
-  } while (malas < 40);
-  dire = window.location.href.replace(re,"$<dire>");
-  malas = 0;
-  i = 0;
-  pad = 3;
-}
-if (dires.length > 0) {
-  while (document.body.childElementCount > 0) document.body.childNodes[0].remove();
-
-  let style = document.createElement('style');
-  style.appendChild(document.createTextNode(`
+let style = document.createElement('style');
+style.appendChild(document.createTextNode(`
     ul {
       display: flex;
       flex-flow: row wrap;
@@ -96,17 +96,43 @@ if (dires.length > 0) {
       max-width: 100vw;
       flex: 0;
     }
+    .original {
+      height: initial;
+      width: initial;
+      flex: 0;
+    }
 }
     `));
-  document.head.appendChild(style);
+document.head.appendChild(style);
 
-  dires.forEach((direCompleta) => {
-    let img = document.createElement("img");
-    img.src = direCompleta;
-    img.addEventListener("click", () => {
-      img.classList.toggle("grande");
-      img.scrollIntoView();
-    });
-    img = document.body.appendChild(img);
-  });
+while (document.body.childElementCount > 0) document.body.childNodes[0].remove();
+
+for (let j = 0; j < 2; j++) {
+  do {
+    (function(){
+      i++;
+      let numero = i.toString().padStart(pad,0);
+      let direCompleta = `${dire}${numero}.jpg`;
+      let request = new XMLHttpRequest();
+      request.open('GET', direCompleta, false);
+      request.onreadystatechange = function(){
+        if (request.readyState === 4){
+          if (request.status === 200) {
+            sumarImagen(direCompleta);
+            malas = 0;
+            return;
+          }
+          malas++;
+        }
+      };
+      request.send();
+      console.log(i+": "+malas);
+    })();
+  } while (malas < 40);
+  dire = window.location.href.replace(re,"$<dire>");
+  malas = 0;
+  i = 0;
+  pad = 3;
 }
+
+document.title = document.getElementsByTagName("img").length + " " + matches.groups.nombre
