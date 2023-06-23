@@ -10,7 +10,7 @@
 @match          https://www.girlsbcn.net/gb*
 @match          https://web.archive.org/web/*/http://www.girlsbcn.net/gb*
 @match          https://web.archive.org/web/*/https://www.girlsbcn.net/gb*
-@version        2.0.0
+@version        2.1.0
 ==/UserScript==
 */
 
@@ -22,12 +22,19 @@
 // Teléfono sin guiones
 const elements = document.getElementsByClassName('telefono');
 
+const onclick = (phone) => navigator.clipboard.writeText(phone).then(
+  () => console.log(`phone succesfully copied`),
+  (e) => console.log('error writing phone in clipboard: ' + e)
+);
+
 if (elements.length > 0) {
-  const phone = elements[1].innerText.replaceAll('-', '');
+  const phone = elements[1]?.innerText?.replaceAll('-', '') || document.title.match(/\d{9}/);
   Array.from(elements).forEach((e) => {
     if (e.children.length > 0) {
       e.firstElementChild.setAttribute('href', `https://www.google.com/search?&q=${phone}`);
       e.firstElementChild.innerText = phone;
+      e.firstElementChild.onclick = () => onclick(phone);
+      e.firstElementChild.onauxclick = () => onclick(phone);
     } else {
       const newLink = document.createElement('a');
       e.innerText = null;
@@ -36,7 +43,9 @@ if (elements.length > 0) {
       newLink.setAttribute('rel', "noreferrer noopener");
       newLink.setAttribute('target', "_blank");
       e.appendChild(newLink);
-    }
+      newLink.onclick = () => onclick(phone);
+      newLink.onauxclick = () => onclick(phone);
+        }
   });
 }
 
