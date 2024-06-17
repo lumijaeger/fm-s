@@ -1,18 +1,16 @@
-/*
-==UserScript==
-@name           GBCN-perfil
-@match          https://www.girlsmadrid.com/escort*
-@match          https://web.archive.org/web/*/http://www.girlsmadrid.com/escort*
-@match          https://web.archive.org/web/*/https://www.girlsmadrid.com/escort*
-@match          https://www.girlsbarcelona.com/escort*
-@match          https://web.archive.org/web/*/http://www.girlsbarcelona.com/escort*
-@match          https://web.archive.org/web/*/https://www.girlsbarcelona.com/escort*
-@match          https://www.girlsbcn.net/gb*
-@match          https://web.archive.org/web/*/http://www.girlsbcn.net/gb*
-@match          https://web.archive.org/web/*/https://www.girlsbcn.net/gb*
-@version        2.1.0
-==/UserScript==
-*/
+// ==UserScript==
+// @name           GBCN-perfil
+// @match          https://www.girlsmadrid.com/escort*
+// @match          https://web.archive.org/web/*/http://www.girlsmadrid.com/escort*
+// @match          https://web.archive.org/web/*/https://www.girlsmadrid.com/escort*
+// @match          https://www.girlsbarcelona.com/escort*
+// @match          https://web.archive.org/web/*/http://www.girlsbarcelona.com/escort*
+// @match          https://web.archive.org/web/*/https://www.girlsbarcelona.com/escort*
+// @match          https://www.girlsbcn.net/gb*
+// @match          https://web.archive.org/web/*/http://www.girlsbcn.net/gb*
+// @match          https://web.archive.org/web/*/https://www.girlsbcn.net/gb*
+// @version        2.2.0
+// ==/UserScript==
 
 /*ToDo
 - Cambiar el teléfono por un enlace que abra búsquedas en las webs habituales
@@ -53,6 +51,10 @@ if (elements.length > 0) {
 let encabezado = document.getElementsByClassName("heading")[0];
 encabezado.style.position = "relative";
 encabezado.style.zIndex = "1000000";
+
+  //vídeos al 10% de volumen
+Array.from(document.getElementsByTagName('video'))
+  .forEach(video => video.volume = 0.01);
 
 // Galería completa
   // wrapper de las fotos
