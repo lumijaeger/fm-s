@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name           DESTACAMOS-busquedaVacia
 // @match          http://www.destacamos.com/keyword-*/listings.html
+// @match          http://www.destacamos.net/keyword-*/listings.html
 // @version        1.0.1
 // ==/UserScript==
 
