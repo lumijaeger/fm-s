@@ -1,0 +1,23 @@
+/*
+==UserCSS==
+@name           VALLADOLIDCITAS
+@match          https://www.valladolidcitas.es/*
+@match          https://www.valladolidcitas.com/*
+@match          https://www.bilbaocitas.es/*
+@match          https://www.bilbaocitas.com/*
+@version        1.0
+@run-at         document_idle
+==/UserCSS==
+*/
+
+#headlessui-portal-root {
+  display: none !important;
+}
+
+html {
+  overflow: scroll !important;
+}
+
+.blur-xl {
+  filter: blur(0) !important;
+}
