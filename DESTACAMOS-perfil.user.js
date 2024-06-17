@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name           DESTACAMOS-perfil
 // @match          https://www.destacamos.com/*/details.html
-// @version        1.0.1
+// @match          https://www.destacamos.net/*/details.html
+// @version        1.0.2
 // ==/UserScript==
-
 
 const phoneLink = document.querySelector('div#details div:first-child strong a');
 const googleLink = document.createElement('a');
