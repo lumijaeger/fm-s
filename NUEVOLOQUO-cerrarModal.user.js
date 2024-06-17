@@ -1,11 +1,9 @@
-/*
-==UserScript==
-@name           NUEVOLOQUO-cerrarModal
-@match          https://www.nuevoloquo.com/*
-@match          https://www.nuevoloquo.ch/*
-@version        1.0
-==/UserScript==
-*/
+// ==UserScript==
+// @name           NUEVOLOQUO-cerrarModal
+// @match          https://www.nuevoloquo.com/*
+// @match          https://www.nuevoloquo.ch/*
+// @version        1.0
+// ==/UserScript==
 
 const observerNoScroll = new MutationObserver((mutations, obs) => {
   mutations.forEach((mutation) => {

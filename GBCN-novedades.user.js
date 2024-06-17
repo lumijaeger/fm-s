@@ -1,14 +1,12 @@
-/*
-==UserScript==
-@name           GBCN-novedades
-@match          https://www.girlsbarcelona.com/news
-@match          https://www.girlsbarcelona.com/novedades-pagina-*
-@match          https://www.girlsmadrid.com/news
-@match          https://www.girlsmadrid.com/novedades-pagina-*
-@version        1.3
-@run-at         document_idle
-==/UserScript==
-*/
+// ==UserScript==
+// @name           GBCN-novedades
+// @match          https://www.girlsbarcelona.com/news
+// @match          https://www.girlsbarcelona.com/novedades-pagina-*
+// @match          https://www.girlsmadrid.com/news
+// @match          https://www.girlsmadrid.com/novedades-pagina-*
+// @version        1.3
+// @run-at         document_idle
+// ==/UserScript==
 
 let enanas = document.querySelectorAll("a[href='tag-escorts-bajitas.html']");
 enanas.forEach(cuadro => cuadro.parentElement.parentElement.parentElement.style.backgroundColor = "darkolivegreen");

@@ -1,10 +1,8 @@
-/*
-==UserScript==
-@name           WALLAPOP-busqueda
-@match          https://es.wallapop.com/app/search?*
-@version        1.0
-==/UserScript==
-*/
+// ==UserScript==
+// @name           WALLAPOP-busqueda
+// @match          https://es.wallapop.com/app/search?*
+// @version        1.0
+// ==/UserScript==
 
 const observer = new MutationObserver((mutations, obs) => {
   mutations.forEach((mutation) => {

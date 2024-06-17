@@ -1,11 +1,9 @@
-/*
-==UserScript==
-@name           GBCN-noticias
-@match          https://www.girlsbarcelona.com/noticias
-@match          https://www.girlsmadrid.com/noticias
-@version        1.1
-==/UserScript==
-*/
+// ==UserScript==
+// @name           GBCN-noticias
+// @match          https://www.girlsbarcelona.com/noticias
+// @match          https://www.girlsmadrid.com/noticias
+// @version        1.1
+// ==/UserScript==
 
 let borrar = /agencia|pr[óo]ximamente|disponible( en \w+?)? a partir|nueva anunciante|Deja \w+? (?:por unos días|hasta su próxima visita)/i;
 let rojo = /No disponible|temporada/i;

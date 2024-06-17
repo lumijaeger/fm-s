@@ -1,10 +1,8 @@
-/*
-==UserScript==
-@name           SCOMPI-perfil
-@match          https://www.scompi.com/*
-@version        1.1
-==/UserScript==
-*/
+// ==UserScript==
+// @name           SCOMPI-perfil
+// @match          https://www.scompi.com/*
+// @version        1.1
+// ==/UserScript==
 
 /* ToDo
 - Siguiente foto al hacer click sobre la foto
