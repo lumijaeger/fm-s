@@ -1,10 +1,13 @@
 /*
 ==UserScript==
 @name           SCOMPI-busquedaVacia
-@match          https://www.slumi.com/
-@match          https://www.slumi.com/*
+@match          https://www.scompi.com/espa%C3%B1a/buscar.*
 @version        1.0
+@run-at         document-idle
 ==/UserScript==
 */
 
-if (document.getElementsById('sin_resultados')[0].style.display !== 'none' || document.getElementsByClassName('no_encontrado').length > 0) window.close();
+console.log(getComputedStyle(document.getElementById('sin_resultados')).display);
+console.log(document.getElementById('sin_resultados').style.display);
+
+//if (getComputedStyle(document.getElementById('sin_resultados')).display !== 'none' || document.getElementsByClassName('no_encontrado').length > 0) window.close();
