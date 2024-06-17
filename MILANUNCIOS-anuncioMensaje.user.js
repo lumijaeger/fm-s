@@ -1,10 +1,8 @@
-/*
-==UserScript==
-@name           MILANUNCIOS-anuncioMensaje
-@match          https://www.milanuncios.com/*
-@version        1.0
-==/UserScript==
-*/
+// ==UserScript==
+// @name           MILANUNCIOS-anuncioMensaje
+// @match          https://www.milanuncios.com/*
+// @version        1.0
+// ==/UserScript==
 
 
 let msg = `Hola:

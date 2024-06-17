@@ -1,11 +1,9 @@
-/*
-==UserScript==
-@name           GBCN-images
-@match          https://*.gbcnmedia.net/*.jpg
-@match          http://*.girlsbcn.net/*.jpg
-@version        1.5.2
-==/UserScript==
-*/
+// ==UserScript==
+// @name           GBCN-images
+// @match          https://*.gbcnmedia.net/*.jpg
+// @match          http://*.girlsbcn.net/*.jpg
+// @version        1.5.2
+// ==/UserScript==
 
 /* ToDo
 - Buscarlas también en wayback (hay que cambiar el número del principio y buscarlas en varios formatos)
