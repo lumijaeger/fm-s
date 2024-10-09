@@ -14,9 +14,10 @@
 // @match          https://www.toledocitas.com/*
 // @match          https://www.murciacitas.com/*
 // @match          https://www.alicante69.com/*
-// @match          https://www.coru%C3%B1acitas.com/*
-// @match          https://www.coru?acitas.com/*
+// @match          https://www.xn--coruacitas-w9a.com/*
 // @match          https://www.valenciacitas.com/*
+// @match          https://www.cordoba69.com/*
+// @match          https://www.vitoriacitas.com/*
 // @version        1.1
 // @run-at         document_end
 // @require        UtilitiesPack
