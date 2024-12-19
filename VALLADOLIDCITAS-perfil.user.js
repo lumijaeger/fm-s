@@ -18,10 +18,15 @@
 // @match          https://www.valenciacitas.com/*
 // @match          https://www.cordoba69.com/*
 // @match          https://www.vitoriacitas.com/*
-// @version        1.1
+// @match          https://www.oviedo69.es/*
+// @match          https://www.burgos69.com/*
+// @version        1.1.1
 // @run-at         document_end
 // @require        UtilitiesPack
 // ==/UserScript==
 
-Array.from(document.images).forEach((e) => e.src = e.src?.replace(/\?width=480&optimizer=image|&blur=\d+/g,''));
+Array.from(document.images).forEach((e) => {
+  e.removeAttribute("srcset");
+  e.src = e.src?.replace(/\?width=480&optimizer=image|&blur=\d+/g, "");
+});
 replaceAllPhoneLinksWithGoogle();
