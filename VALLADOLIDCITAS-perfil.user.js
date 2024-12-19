@@ -1,5 +1,6 @@
 // ==UserScript==
 // @name           VALLADOLIDCITAS-perfil
+// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/VALLADOLIDCITAS-perfil.user.js
 // @match          https://www.valladolidcitas.es/*
 // @match          https://www.valladolidcitas.com/*
 // @match          https://www.bilbaocitas.es/*

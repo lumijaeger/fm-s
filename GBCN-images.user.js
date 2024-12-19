@@ -1,5 +1,6 @@
 // ==UserScript==
 // @name           GBCN-images
+// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/GBCN-images.user.js
 // @match          https://*.gbcnmedia.net/*.jpg
 // @match          http://*.girlsbcn.net/*.jpg
 // @version        1.5.2
@@ -9,20 +10,24 @@
 - Buscarlas también en wayback (hay que cambiar el número del principio y buscarlas en varios formatos)
 */
 
-let dire = window.location.href.replace(/fotos(\d)\.girlsbcn(.*)/,
+let dire = window.location.href.replace(
+  /fotos(\d)\.girlsbcn(.*)/,
   (match, p1, p2) => {
     if (match) window.location.assign(`https://media${p1}.gbcnmedia${p2}`);
-  });
-let re = /(?<dire>.*?.net\/(?<nombre>[a-zA-Z]*)\d{0,3}\/)(?<foto>(?:\k<nombre>)?(?<numFoto>\d{1,3}))(?<ext>.*)/;
+  }
+);
+let re =
+  /(?<dire>.*?.net\/(?<nombre>[a-zA-Z]*)\d{0,3}\/)(?<foto>(?:\k<nombre>)?(?<numFoto>\d{1,3}))(?<ext>.*)/;
 let matches = dire.match(re);
 let photos = [];
 
-if ((/0?01/).test(matches.groups.foto) < 3) {
+if (/0?01/.test(matches.groups.foto) < 3) {
   dire = dire.replace(re, "$<dire>$<nombre>");
 }
 
-let style = document.createElement('style');
-style.appendChild(document.createTextNode(`
+let style = document.createElement("style");
+style.appendChild(
+  document.createTextNode(`
 body {
   display: flex;
   flex-flow: row wrap;
@@ -58,21 +63,22 @@ img.landscape {
   max-width: initial;
   flex: 0
 }
-`));
+`)
+);
 
 (function addImg(pad = 2, malas = 0, i = 1) {
-  let direCompleta = `${dire}${(i.toString().padStart(pad,0))}.jpg`;
+  let direCompleta = `${dire}${i.toString().padStart(pad, 0)}.jpg`;
   let request = new XMLHttpRequest();
-  request.open('GET', direCompleta, false);
+  request.open("GET", direCompleta, false);
 
-  request.onreadystatechange = function() {
+  request.onreadystatechange = function () {
     if (request.readyState !== 4 || request.status !== 200) {
       if (pad === 2 || i > matches.groups.numFoto) malas++;
       console.log({
         direCompleta,
         pad,
         malas,
-        i
+        i,
       });
       return;
     }
@@ -80,7 +86,9 @@ img.landscape {
     img.src = direCompleta;
     img.addEventListener("click", (e) => {
       let targetClassList = e.target.classList;
-      targetClassList[(targetClassList.contains("original") ? "remove" : "add")]("original");
+      targetClassList[targetClassList.contains("original") ? "remove" : "add"](
+        "original"
+      );
     });
     photos = [...photos, img];
   };
@@ -98,7 +106,8 @@ img.landscape {
 })();
 
 document.title = photos.length + " " + matches.groups.nombre;
-while (document.body.childElementCount > 0) document.body.childNodes[0].remove();
+while (document.body.childElementCount > 0)
+  document.body.childNodes[0].remove();
 document.head.appendChild(style);
 photos.forEach((e) => {
   document.body.appendChild(e);

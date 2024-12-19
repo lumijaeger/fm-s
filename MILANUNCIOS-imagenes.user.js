@@ -1,5 +1,6 @@
 // ==UserScript==
 // @name           MILANUNCIOS-imagenes
+// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/MILANUNCIOS-imagenes.user.js
 // @match          https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/*avif
 // @match          https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/*
 // @match          https://img.milanuncios.com/*.jpg*
@@ -7,6 +8,6 @@
 // ==/UserScript==
 
 let dire = window.location.href.replace(/avif$/, "jpeg");
-dire = dire.replace(/(?<=jpg|avif)\?.*/, '');
+dire = dire.replace(/(?<=jpg|avif)\?.*/, "");
 
-if(window.location.href !== dire) window.location.assign(dire);
+if (window.location.href !== dire) window.location.assign(dire);
