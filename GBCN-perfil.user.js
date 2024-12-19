@@ -16,6 +16,8 @@
 /*ToDo
 - Cambiar el teléfono por un enlace que abra búsquedas en las webs habituales
 - Eliminar las restricciones a la selección y el botón secundario
+- Enlace al perfil en girlsbcn.net
+- Acción que guarde la página actual, el perfil de girlsbcn.net y todas las imágenes en wayback
  */
 
 // Teléfono sin guiones
