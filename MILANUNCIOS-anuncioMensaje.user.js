@@ -4,7 +4,7 @@
 // @version        1.0
 // ==/UserScript==
 
-
+/* 
 let msg = `Hola:
 
 Soy fotógrafo y estoy en proceso de inaugurar mi nuevo estudio. Estoy buscando a un maquillador/a y un ayudante para ciertas tareas (sobre todo gestión de agenda y trato con modelos/clientes).
@@ -44,4 +44,4 @@ const obSend = new MutationObserver((mutations, obs) => {
 const msgButton = document.getElementsByClassName('ma-AdContactMessageButton')[0];
 
 
-obMsg.observe(msgButton, {childList: true, subtree: true});
+obMsg.observe(msgButton, {childList: true, subtree: true}); */
