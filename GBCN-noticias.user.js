@@ -1,13 +1,16 @@
 // ==UserScript==
 // @name           GBCN-noticias
+// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/GBCN-noticias.user.js
 // @match          https://www.girlsbarcelona.com/noticias
 // @match          https://www.girlsmadrid.com/noticias
 // @version        1.1
 // ==/UserScript==
 
-let borrar = /agencia|pr[óo]ximamente|disponible( en \w+?)? a partir|nueva anunciante|Deja \w+? (?:por unos días|hasta su próxima visita)/i;
+let borrar =
+  /agencia|pr[óo]ximamente|disponible( en \w+?)? a partir|nueva anunciante|Deja \w+? (?:por unos días|hasta su próxima visita)/i;
 let rojo = /No disponible|temporada/i;
-let amarillo = /traslada|De nuevo (?:disponible|anunciada)|Deja \w+? y (?:de nuevo|ahora) (?:disponible|anunciada)/i;
+let amarillo =
+  /traslada|De nuevo (?:disponible|anunciada)|Deja \w+? y (?:de nuevo|ahora) (?:disponible|anunciada)/i;
 let verde = /foto|v[íi]deo|actualiza|presenta/i;
 let tarjetas = Array.from(document.getElementsByClassName("services-box"));
 

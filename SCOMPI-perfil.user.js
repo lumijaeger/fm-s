@@ -1,5 +1,6 @@
 // ==UserScript==
 // @name           SCOMPI-perfil
+// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/SCOMPI-perfil.user.js
 // @match          https://www.scompi.com/*
 // @version        1.1
 // ==/UserScript==
@@ -13,14 +14,20 @@ document.getElementById("ficha_galeria_prev").style.width = "15%";
 document.getElementById("ficha_galeria_prev").style.cursor = "pointer";
 document.getElementById("ficha_galeria_next").style.width = "15%";
 document.getElementById("ficha_galeria_next").style.cursor = "pointer";
-document.getElementById("ficha_galeria_image").addEventListener("click", function() {document.documentElement.classList.remove("galeriaficha");});
+document
+  .getElementById("ficha_galeria_image")
+  .addEventListener("click", function () {
+    document.documentElement.classList.remove("galeriaficha");
+  });
 
 // Vídeos
-  // Añadir controles normales
+// Añadir controles normales
 let videos = document.getElementsByTagName("video");
-for (let video of videos) { video.setAttribute("controls", true); }
+for (let video of videos) {
+  video.setAttribute("controls", true);
+}
 
-  // Quitar controles mugrosos
+// Quitar controles mugrosos
 const observer = new MutationObserver((mutations, obs) => {
   mutations.forEach((mutation) => {
     if (/video_controles/.test(mutation.addedNodes[0].className)) {
@@ -31,7 +38,9 @@ const observer = new MutationObserver((mutations, obs) => {
   });
 });
 
-const contenedores = document.querySelectorAll("#ficha_videos .contenedor .video");
+const contenedores = document.querySelectorAll(
+  "#ficha_videos .contenedor .video"
+);
 for (const contenedor of contenedores) {
-  observer.observe(contenedor, {childList: true, subtree: true});
+  observer.observe(contenedor, { childList: true, subtree: true });
 }

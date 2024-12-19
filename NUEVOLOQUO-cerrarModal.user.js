@@ -1,5 +1,6 @@
 // ==UserScript==
 // @name           NUEVOLOQUO-cerrarModal
+// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/NUEVOLOQUO-cerrarModal.user.js
 // @match          https://www.nuevoloquo.com/*
 // @match          https://www.nuevoloquo.ch/*
 // @version        1.0
@@ -9,14 +10,14 @@ const observerNoScroll = new MutationObserver((mutations, obs) => {
   mutations.forEach((mutation) => {
     if (/body-no-scroll/.test(mutation.target.className)) {
       console.log(mutation.target);
-      mutation.target.classList.remove('body-no-scroll');
+      mutation.target.classList.remove("body-no-scroll");
       obs.disconnect();
       return;
     }
   });
 });
 
-observerNoScroll.observe(document.getElementsByTagName('html')[0], {
+observerNoScroll.observe(document.getElementsByTagName("html")[0], {
   childList: true,
   subtree: true,
   attributeFilter: ["classList"],
@@ -32,7 +33,7 @@ const observerModal = new MutationObserver((mutations, obs) => {
   });
 });
 
-observerModal.observe(document.getElementsByTagName('html')[0], {
+observerModal.observe(document.getElementsByTagName("html")[0], {
   childList: true,
-  subtree: true
+  subtree: true,
 });
