@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           GBCN-novedades
-// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/GBCN-novedades.user.js
+// @updateURL      https://raw.githubusercontent.com/lumijaeger/fm-s/refs/heads/main/GBCN-novedades.user.js
 // @match          https://www.girlsbarcelona.com/news
 // @match          https://www.girlsbarcelona.com/novedades-pagina-*
 // @match          https://www.girlsmadrid.com/news

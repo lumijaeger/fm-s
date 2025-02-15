@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           SCOMPI-perfil
-// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/SCOMPI-perfil.user.js
+// @updateURL      https://raw.githubusercontent.com/lumijaeger/fm-s/refs/heads/main/SCOMPI-perfil.user.js
 // @match          https://www.scompi.com/*
 // @version        1.1
 // ==/UserScript==

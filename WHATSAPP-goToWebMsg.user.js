@@ -3,7 +3,7 @@
 // @match          https://api.whatsapp.com/send*
 // @match          https://web.whatsapp.com/send*
 // @run-at         document-start
-// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/WHATSAPP-goToWebMsg.user.js
+// @updateURL      https://raw.githubusercontent.com/lumijaeger/fm-s/refs/heads/main/WHATSAPP-goToWebMsg.user.js
 // @version        1.0
 // ==/UserScript==
 

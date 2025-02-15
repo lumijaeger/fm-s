@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           GBCN-perfil
-// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/GBCN-perfil.user.js
+// @updateURL      https://raw.githubusercontent.com/lumijaeger/fm-s/refs/heads/main/GBCN-perfil.user.js
 // @match          https://www.girlsmadrid.com/escort*
 // @match          https://web.archive.org/web/*/http://www.girlsmadrid.com/escort*
 // @match          https://web.archive.org/web/*/https://www.girlsmadrid.com/escort*

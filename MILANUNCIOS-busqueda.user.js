@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           MILANUNCIOS-busqueda
-// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/MILANUNCIOS-busqueda.user.js
+// @updateURL      https://raw.githubusercontent.com/lumijaeger/fm-s/refs/heads/main/MILANUNCIOS-busqueda.user.js
 // @match          https://www.milanuncios.com/ofertas-de-empleo/?s=*
 // @version        1.0
 // ==/UserScript==

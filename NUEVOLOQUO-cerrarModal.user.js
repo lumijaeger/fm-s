@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           NUEVOLOQUO-cerrarModal
-// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/NUEVOLOQUO-cerrarModal.user.js
+// @updateURL      https://raw.githubusercontent.com/lumijaeger/fm-s/refs/heads/main/NUEVOLOQUO-cerrarModal.user.js
 // @match          https://www.nuevoloquo.com/*
 // @match          https://www.nuevoloquo.ch/*
 // @version        1.0

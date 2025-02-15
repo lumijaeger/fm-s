@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           NUEVOLOQUO-busquedaVacia
-// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/NUEVOLOQUO-busquedaVacia.user.js
+// @updateURL      https://raw.githubusercontent.com/lumijaeger/fm-s/refs/heads/main/NUEVOLOQUO-busquedaVacia.user.js
 // @match          https://www.nuevoloquo.com/anuncios-eroticos/anuncios-contactos/putas/*
 // @match          https://www.nuevoloquo.ch/anuncios-eroticos/anuncios-contactos/putas/*
 // @version        1.0

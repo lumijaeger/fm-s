@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           DESTACAMOS-busquedaVacia
-// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/DESTACAMOS-busquedaVacia.user.js
+// @updateURL      https://raw.githubusercontent.com/lumijaeger/fm-s/refs/heads/main/DESTACAMOS-busquedaVacia.user.js
 // @match          http://www.destacamos.com/keyword-*/listings.html
 // @match          http://www.destacamos.net/keyword-*/listings.html
 // @version        1.0.1

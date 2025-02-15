@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           DESTACAMOS-listados
-// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/DESTACAMOS-listados.user.js
+// @updateURL      https://raw.githubusercontent.com/lumijaeger/fm-s/refs/heads/main/DESTACAMOS-listados.user.js
 // @match          https://www.destacamos.com/*/telefono-*/listings.html
 // @match          https://www.destacamos.com/telefono-*/listings.html
 // @match          https://www.destacamos.net/*/telefono-*/listings.html

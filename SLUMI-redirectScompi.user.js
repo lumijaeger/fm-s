@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           SLUMI-redirecScompi
-// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/SLUMI-redirecScompi.user.js
+// @updateURL      https://raw.githubusercontent.com/lumijaeger/fm-s/refs/heads/main/SLUMI-redirecScompi.user.js
 // @match          https://www.slumi.com/
 // @match          https://www.slumi.com/*
 // @version        1.0

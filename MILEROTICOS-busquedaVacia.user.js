@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           MILEROTICOS-busquedaVacia
-// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/MILEROTICOS-busquedaVacia.user.js
+// @updateURL      https://raw.githubusercontent.com/lumijaeger/fm-s/refs/heads/main/MILEROTICOS-busquedaVacia.user.js
 // @match          https://www.mileroticos.com/escorts/buscar-*
 // @version        1.0
 // ==/UserScript==

@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           SCOMPI-busquedaVacia
-// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/SCOMPI-busquedaVacia.user.js
+// @updateURL      https://raw.githubusercontent.com/lumijaeger/fm-s/refs/heads/main/SCOMPI-busquedaVacia.user.js
 // @match          https://www.scompi.com/espa%C3%B1a/buscar.*
 // @version        1.0
 // @run-at         document-idle

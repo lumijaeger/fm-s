@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           DESTACAMOS-soloPutas
-// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/DESTACAMOS-soloPutas.user.js
+// @updateURL      https://raw.githubusercontent.com/lumijaeger/fm-s/refs/heads/main/DESTACAMOS-soloPutas.user.js
 // @match          https://www.destacamos.com/*/listings.html
 // @match          https://www.destacamos.net/*/listings.html
 // @version        1.0.0

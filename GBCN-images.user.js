@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           GBCN-images
-// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/GBCN-images.user.js
+// @updateURL      https://raw.githubusercontent.com/lumijaeger/fm-s/refs/heads/main/GBCN-images.user.js
 // @match          https://*.gbcnmedia.net/*.jpg
 // @match          http://*.girlsbcn.net/*.jpg
 // @version        1.5.2

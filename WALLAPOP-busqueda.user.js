@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           WALLAPOP-busqueda
-// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/WALLAPOP-busqueda.user.js
+// @updateURL      https://raw.githubusercontent.com/lumijaeger/fm-s/refs/heads/main/WALLAPOP-busqueda.user.js
 // @match          https://es.wallapop.com/app/search?*
 // @version        1.0
 // ==/UserScript==

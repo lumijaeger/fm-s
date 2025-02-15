@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           DESTACAMOS-perfil
-// @updateURL      https://raw.githubusercontent.com/lumisjaeger/fm-s/refs/heads/master/DESTACAMOS-perfil.user.js
+// @updateURL      https://raw.githubusercontent.com/lumijaeger/fm-s/refs/heads/main/DESTACAMOS-perfil.user.js
 // @match          https://www.destacamos.com/*/details.html
 // @match          https://www.destacamos.net/*/details.html
 // @require        UtilitiesPack
