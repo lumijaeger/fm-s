@@ -20,14 +20,15 @@
 @match          https://www.valenciacitas.com/*
 @match          https://www.cordoba69.com/*
 @match          https://www.vitoriacitas.com/*
+@match          https://www.oviedo69.es/*
 @match          https://www.burgos69.com/*
-@version        1.0.2
+@version        1.0.3
 @run-at         document_idle
 ==/UserCSS==
 */
 
 div.hidden:has(> div > div > div.transition.duration-500 > img~img),
-  div:has(>div.keen-slider),
+  div:has(> div.keen-slider),
 #headlessui-portal-root,
 #__next > main > .fixed,
 #test,
@@ -42,6 +43,6 @@ html {
   overflow: scroll !important;
 }
 
-*:has(img) {
+*:has(img), .blur, .blur-xl {
   filter: blur(0) !important;
 }
